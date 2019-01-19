@@ -1,26 +1,20 @@
 import Handel from "./handle.js";
-import Model from "./model.js";
+import Player from "./player.js";
 import contral from "./contral.js";
 
-import template from "./template";
+import creat from './creat';
 
 let Gplay = opt => {
-  let el = document.querySelector(`#${opt.id}`);
-
-  if (!opt.id || !el) {
-    throw Error("id err");
-  }
-  _create(el);
-  _init(opt);
+  let {id} = opt;
+  let material = creat(id);
+  _init(opt,material);
 };
 
-let _create = el => {
-  el.innerHTML = template;
-};
-
-let _init = opt => {
-  let handel = new Handel();
-  let model = new Model(opt);
+let _init = (opt,material) => {
+  let {video} = material;
+ 
+  let handel = new Handel(material);
+  let model = new Player(opt,video);
   contral(model, handel);
 };
 

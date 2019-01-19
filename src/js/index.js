@@ -5,7 +5,8 @@ var option = {
   src:"",
   id:"video",
   width:"500",
-  height:"500"
+  height:"500",
+  auto:false,
 }
 
 Gplay(option)

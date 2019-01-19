@@ -1,111 +1,40 @@
-// // var supportsVideo = !!document.createElement('video').canPlayType;
-// // if (supportsVideo) {
-// //    // set up custom controls
-// //    // ...
-// // }
-
-// // var videoContainer = document.getElementById('videoContainer');
-// // var video = document.getElementById('video');
-// // var videoControls = document.getElementById('video-controls');
-
-// // // Hide the default controls
-// // video.controls = false;
-// // // console.log(document.getElementById('video'))
-
-// // // Display the user defined video controls
-// // videoControls.style.display = 'block';
-
-
-
-// // playpause.addEventListener('click', function(e) {
-// //     if (video.paused || video.ended) video.play();
-// //     else video.pause();
-// //     console.log(
-// //         video.duration // 总时间
-// //     )
-
-// //  });
-
-// //  video.addEventListener('timeupdate', function() {
-// //     if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
-// //     progress.value = video.currentTime;
-// //     progressBar.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
-// //  });
-
-// //  //stop
-// //  stop.addEventListener('click', function(e) {
-// //     video.pause();
-// //     video.currentTime = 0;
-// //     progress.value = 0;
-// //  });
-// //  //
-// //  mute.addEventListener('click', function(e) {
-// //     video.muted = !video.muted;
-// //  });
-
-// //  //VolumeSection
-// //  volinc.addEventListener('click', function(e) {
-// //     alterVolume('+');
-// //  });
-
-// //  voldec.addEventListener('click', function(e) {
-// //     alterVolume('-');
-// //  });
-// //  var alterVolume = function(dir) {
-// //     var currentVolume = Math.floor(video.volume * 10) / 10;
-// //     if (dir === '+') {
-// //        if (currentVolume < 1) video.volume += 0.1;
-// //     }
-// //     else if (dir === '-') {
-// //        if (currentVolume > 0) video.volume -= 0.1;
-// //     }
-// //  }
-
-// //
-// //  HTMLMediaElement.currentTime
-// var video = document.getElementById("video");
-
-// init(video);
-
-
-
-
 function contral (model, handle) {
+    // console.log()
     console.log(model);
     console.log(handle);
 
-    // 播放
-    let playContral =() => {
-        handle.video.play()
-        model.play()
-    }
-    // 改变进度
+    ob(model.video,'loadedmetadata',()=> {
+        handle.init(model.video.duration)
+    })
 
-    let test =() => {
-        var o = document.getElementById('time')
-        let t = 1
-        // setInterval(() => {
-        //     o.innerText = t++
-        // }, 300);
-    }
+    ob(handle.playBar,()=> {
+        handle.cstate();
+        model.play();
+    });
 
-    test()
+    // ob(handle.fullBar,()=> {
+    //     model.full()
+    // });
 
-    ob(handle.playbtn,playContral);
+    ob(handle.progress,(e)=> {
+        let o = e.offsetX/600*322
+        model.video.currentTime=o
+    })
 
+    ob(model.video,'timeupdate',()=> {
+        handle.ctime(model.video.currentTime)
+        var offset =(model.video.currentTime/model.video.duration)*100;
+        handle.cprogress(offset);
+    })
 
 }
 
-
-
-
-
-
 let ob=(target,event,callback)=> {
+    console.log(target)
     if(!callback) {
-        let falg = event;
+        let _falg = event;
         event = "click";
-        callback = falg;
+        callback = _falg;
     }
     target.addEventListener(event,callback,false)
 }
