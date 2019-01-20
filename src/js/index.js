@@ -2,13 +2,13 @@ import '../css/index.scss'
 import Gplay from './init'
 
 var option = {
-  src:"",
+  src:"./src/js/test.mp4",
   id:"video",
-  width:"500",
+  width:"900",
   height:"500",
   auto:false,
 }
 
 Gplay(option)
 
-// var   myplay =  new handle(option);
+export default Gplay;

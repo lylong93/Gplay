@@ -1,39 +1,39 @@
-function contral (model, handle) {
-    // console.log()
-    console.log(model);
-    console.log(handle);
+function contral (player, handle) {
+    let video = player.video
 
-    ob(model.video,'loadedmetadata',()=> {
-        handle.init(model.video.duration)
+    ob(video,'loadedmetadata',()=> {
+        player.init(video.duration)
+        handle.init(video.duration)
+    })
+
+    ob(video,'timeupdate',()=> {
+        handle.ctime(video.currentTime)
+        player.ctime(video.currentTime)
+        let value = player.offset()
+        handle.ctimeProgress(value);
     })
 
     ob(handle.playBar,()=> {
         handle.cstate();
-        model.play();
+        player.play();
     });
 
-    // ob(handle.fullBar,()=> {
-    //     model.full()
-    // });
 
-    ob(handle.progress,(e)=> {
-        let o = e.offsetX/600*322
-        model.video.currentTime=o
+    ob(handle.timeProgress,(e)=> {
+        let o = e.offsetX/player.width*player.totletime
+        player.video.currentTime=o
     })
 
-    ob(model.video,'timeupdate',()=> {
-        handle.ctime(model.video.currentTime)
-        var offset =(model.video.currentTime/model.video.duration)*100;
-        handle.cprogress(offset);
+    ob(handle.vicoebtn,()=> {
+        
+        player.offVoice();
     })
-
 }
 
 let ob=(target,event,callback)=> {
-    console.log(target)
     if(!callback) {
         let _falg = event;
-        event = "click";
+        event ='click'
         callback = _falg;
     }
     target.addEventListener(event,callback,false)

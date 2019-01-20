@@ -4,9 +4,10 @@ class Player {
     this.src = opt.src; // 资源
     this.totletime = 0; //总时间
     this.currentTime = 0; //当前时间
-    this.voice = 0; //音量
+    this.voice = 0.1; //音量
+    this.mutedType = false;
     this.playing = false; //播放中
-    this._init();
+    this.width = opt.width; // 宽
   }
   // 播放
   play() {
@@ -16,44 +17,52 @@ class Player {
     }
     this.video.play()
     this.playing = true
-    // this.video.muted = false
-    // this.video.volume = 0.2
-    // this.playing = true
+
+    if(this.mutedType) {
+      return
+    }
+    this.video.muted = false;
+    this.video.voice = this.voice;
   }
   // 暂停
   _pasue() {
     this.video.pause()
     this.playing = false
-    // this.video.pause();
-    // var video = document.getElementById('main');
-    // console.log(o.paused)
-    // console.log(video.paused)
-    // video.pause(); 
-
   }
   // 停止
   stop() {
     this.video.stop()
     this.playing = false
   }
-  // 全屏
-  full() {
-    // console.log( this.video.duration)
-    console.log(this.video.played.length)
-    this.totletime = this.video.duration;
-    console.log( this.video.duration)
-    // this.video.play();
-    // launchFullscreen(this.video);\
-    // this.video.webkitRequestFullScreen()
+  // // 全屏
+  // full() {
+  //   console.log(this.video.played.length)
+  //   this.totletime = this.video.duration;
+  //   console.log( this.video.duration)
+  // }
+  //改变当前时间
+  ctime(time) {
+    this.currentTime = time;
   }
-  // 改变进度
-  stop(time) {
-    this.totletime = time
+  //偏移
+  offset() {
+    let _offset = (this.currentTime/this.totletime)*100;
+    return _offset
+  }
+  // 静音
+  offVoice() {
+    console.log('o')
+    this.video.muted = true;
+    this.mutedType = true;
+  }
+    // 音量
+  cvoice(voice) {
+    this.voice = voice;
+    this.video.voice = this.voice;
   }
 
-
-  _init() {    
-    this.totletime = this.video.duration;
+  init(time) {    
+    this.totletime = time;
   }
 }
 

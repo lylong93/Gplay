@@ -1,9 +1,12 @@
+*{
+  padding: 0;
+  margin: 0;
+}
 .player-wrapper {
   width: 600px;
   height: 500px;
   position: relative;
   .player-screen {
-    height: 100%;
     width: 100%;
     border: 1px solid black;
   }
@@ -20,7 +23,7 @@
       .player-progress-btn {
         position: absolute;
         top: 0;
-        width: 20%;
+        width: 0;
         height: 10px;
         background: black;
       }
@@ -33,6 +36,24 @@
       }
       .contral-bar-right {
         display: flex;
+        .vicoe {
+          position: relative;
+          .vicoe-progress{
+            position: absolute;
+            bottom: 0;
+            border:1px solid red;
+            height: 100px;
+            width: 10px;
+            .vicoe-progress-btn{
+              height: 20%;
+              width: 10px;
+              background: #000000;
+              position: absolute;
+              bottom: 0;
+            }
+          }
+        }
+
       }
     }
   }
