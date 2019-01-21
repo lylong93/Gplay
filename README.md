@@ -26,3 +26,10 @@ or
 
   import Gplay from 'Gplay'
  ```
+
+
+ ## develop
+
+  ```shell
+    npm run watch
+ ```
