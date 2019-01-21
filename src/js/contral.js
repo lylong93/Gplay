@@ -25,8 +25,13 @@ function contral (player, handle) {
     })
 
     ob(handle.vicoebtn,()=> {
-        
         player.offVoice();
+     
+    })
+
+    ob(handle.voiceProgress,(e)=> {
+        let voice =  handle.cvoiceProgress(e)
+        player.cvoice (voice);
     })
 }
 
@@ -38,7 +43,6 @@ let ob=(target,event,callback)=> {
     }
     target.addEventListener(event,callback,false)
 }
-
 
 
 export default contral;

@@ -6,11 +6,21 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./dist/player.css">
+    <script type="text/javascript" src="./dist/player.min.js"></script>
   </head>
   <body>
     <div id="video">
     </div>
+    <script type="text/javascript">
+      var option = {
+        src:"./src/js/test.mp4",
+        id:"video",
+        width:"900",
+        height:"500",
+        auto:false,
+      }
+      window.Gplay(option)
+  </script>
+
   </body>
-  <!-- <script type="text/javascript" src="./dist/player.min.js"></script> -->
-  <script type="text/javascript" src="./dist/player.min.js"></script>
 </html>

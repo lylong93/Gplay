@@ -4,6 +4,7 @@ import contral from "./contral.js";
 
 import creat from './creat';
 
+
 let Gplay = opt => {
   _init(opt);
 };

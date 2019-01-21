@@ -6,8 +6,9 @@
   width: 600px;
   height: 500px;
   position: relative;
-  .player-screen {
+  .player-video {
     width: 100%;
+    // height: 100%;
     border: 1px solid black;
   }
   .player-contral {
@@ -15,17 +16,48 @@
     bottom: 0;
     width: 100%;
     height: 50px;
-    background: rgba($color: #000000, $alpha: 0.3);
+    background: rgba($color: #000000, $alpha: 0.5);
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
     .player-progress {
       height: 10px;
-      background: yellow;
+      background:black;
+      border-radius: 10px;
       width: 100%;
+      position: relative;
       .player-progress-btn {
         position: absolute;
         top: 0;
         width: 0;
         height: 10px;
-        background: black;
+        background: -webkit-linear-gradient(left, rgb(135, 163, 223) , green,yellow);
+        border-radius: 10px;
+        .light {
+          // display: block;
+          // border:1px solid rgba(59,255,255,1);
+          background: radial-gradient(rgba(59,255,255,1),transparent);
+          // background: transparent;
+          border:none;
+          box-shadow:0 1px 50px rgba(59,255,255,1);
+          height:10px;
+          width:20px;
+          position: absolute;
+          top:0;
+          animation: move 10s linear infinite;
+          // animation-timing-function:linear;
+        }
+
+        @keyframes move
+        {
+        	0% {
+            left: 0;
+          }
+          100% {
+            left: 90%;
+          }
+        }
       }
     }
     .player-contral-bar {
@@ -33,27 +65,36 @@
       justify-content: space-between;
       .contral-bar-left {
         display: flex;
+        .player-playbtn{
+          margin: 0 10px;
+        }
       }
       .contral-bar-right {
         display: flex;
         .vicoe {
           position: relative;
+          margin: 0 10px;
+          &:hover {
+            .vicoe-progress {
+             display: block;
+            }
+          }
           .vicoe-progress{
+            display: none;
             position: absolute;
             bottom: 0;
-            border:1px solid red;
+            background:rgba(0, 0, 0,.6);
             height: 100px;
             width: 10px;
             .vicoe-progress-btn{
-              height: 20%;
+              height: 10%;
               width: 10px;
-              background: #000000;
+              background:rgba(0, 0, 0,.9);
               position: absolute;
               bottom: 0;
             }
           }
         }
-
       }
     }
   }

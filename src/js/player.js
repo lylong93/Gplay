@@ -51,13 +51,12 @@ class Player {
   }
   // 静音
   offVoice() {
-    console.log('o')
     this.video.muted = true;
     this.mutedType = true;
   }
     // 音量
   cvoice(voice) {
-    this.voice = voice;
+    this.voice = voice/10;
     this.video.voice = this.voice;
   }
 

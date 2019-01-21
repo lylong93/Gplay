@@ -6,7 +6,7 @@
   width: 600px;
   height: 500px;
   position: relative; }
-  .player-wrapper .player-screen {
+  .player-wrapper .player-video {
     width: 100%;
     border: 1px solid black; }
   .player-wrapper .player-contral {
@@ -14,36 +14,64 @@
     bottom: 0;
     width: 100%;
     height: 50px;
-    background: rgba(0, 0, 0, 0.3); }
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
     .player-wrapper .player-contral .player-progress {
       height: 10px;
-      background: yellow;
-      width: 100%; }
+      background: black;
+      border-radius: 10px;
+      width: 100%;
+      position: relative; }
       .player-wrapper .player-contral .player-progress .player-progress-btn {
         position: absolute;
         top: 0;
         width: 0;
         height: 10px;
-        background: black; }
+        background: -webkit-linear-gradient(left, #87a3df, green, yellow);
+        border-radius: 10px; }
+        .player-wrapper .player-contral .player-progress .player-progress-btn .light {
+          background: radial-gradient(#3bffff, transparent);
+          border: none;
+          box-shadow: 0 1px 50px #3bffff;
+          height: 10px;
+          width: 20px;
+          position: absolute;
+          top: 0;
+          animation: move 10s linear infinite; }
+
+@keyframes move {
+  0% {
+    left: 0; }
+  100% {
+    left: 90%; } }
     .player-wrapper .player-contral .player-contral-bar {
       display: flex;
       justify-content: space-between; }
       .player-wrapper .player-contral .player-contral-bar .contral-bar-left {
         display: flex; }
+        .player-wrapper .player-contral .player-contral-bar .contral-bar-left .player-playbtn {
+          margin: 0 10px; }
       .player-wrapper .player-contral .player-contral-bar .contral-bar-right {
         display: flex; }
         .player-wrapper .player-contral .player-contral-bar .contral-bar-right .vicoe {
-          position: relative; }
+          position: relative;
+          margin: 0 10px; }
+          .player-wrapper .player-contral .player-contral-bar .contral-bar-right .vicoe:hover .vicoe-progress {
+            display: block; }
           .player-wrapper .player-contral .player-contral-bar .contral-bar-right .vicoe .vicoe-progress {
+            display: none;
             position: absolute;
             bottom: 0;
-            border: 1px solid red;
+            background: rgba(0, 0, 0, 0.6);
             height: 100px;
             width: 10px; }
             .player-wrapper .player-contral .player-contral-bar .contral-bar-right .vicoe .vicoe-progress .vicoe-progress-btn {
-              height: 20%;
+              height: 10%;
               width: 10px;
-              background: #000000;
+              background: rgba(0, 0, 0, 0.9);
               position: absolute;
               bottom: 0; }
 

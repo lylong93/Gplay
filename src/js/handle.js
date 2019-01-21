@@ -1,9 +1,13 @@
 class Handel {
   constructor(material) {
     this.playBar = material.playbtn;
-    this.fullBar = material.fullbtn;
+    // this.fullBar = material.fullbtn;
     this.timeProgress = material.timeProgress;
     this.timeProgressBtn = material.timeProgressBtn;
+
+
+    this.voiceProgress = material.voiceProgress;
+    this.voiceProgressBtn = material.voiceProgressBtn;
     this.vicoebtn = material.vicoebtn;
     this.totalTime = material.totalTime;
     this.currentTime = material.currentTime;
@@ -23,7 +27,21 @@ class Handel {
   ctimeProgress(offset) {
     this.timeProgressBtn.style.width=`${offset}%`;
   }
-
+  cvoiceProgress(e) {
+    if(e.target === this.voiceProgress) {
+      let p = Math.round(e.offsetY/10)
+      let o =(10-p)*10
+      // console.log(o)
+      this.voiceProgressBtn.style.height=`${o}%`;
+      return o/10
+    }else {
+      let p = Math.round(e.offsetY/10)
+      let o = this.voiceProgressBtn.style.height.split('%')[0]- p*10
+      // console.log(o)
+      this.voiceProgressBtn.style.height=`${o}%`;
+      return o/10
+    }
+  }
   ctime(time) {
     this.currentTime.innerText = this._rt(time);
   }
